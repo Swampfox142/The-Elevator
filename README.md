@@ -17,6 +17,8 @@
 - Allows for interaction via command-line.
 - Scalable & configurable with arbitrary number of floors/buttons (not currently supported through cli, and not thoroughly tested)
 
+![Image of a running instance of application. floorButton 4 and Floor 3's 'Down' call button are pressed. The elevator is in motion upwards towards floor 4.](images/elevator-animated.png)
+
 ## Installation
 1. Clone the repository:
    git clone https://github.com/Swampfox142/The-Elevator.git
