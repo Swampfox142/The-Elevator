@@ -4,8 +4,9 @@
 1. [Description](#description)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [Features](#features)
-5. [Bugs](#bugs)
+4. [Assumptions](#assumptions)
+5. [Features](#features)
+6. [Bugs](#bugs)
 
 
 ## Description
@@ -43,7 +44,11 @@
 - [ ] GUI-supported user input (unplanned)
 - [ ] Multiple Elevators (unplanned)
 
+## Assumptions
+No system requirements were provided beyond 'Provide code that simulates an elevator'. Given these minimal specifications, I propose a simple, agnostic, and scalable design that covers the most common elevator features and provides support for various types of elevators to be implemented later.
+Various types of elevators that may come to mind or expect to be added as a requirement later include: service elevators (weight capacity, extra safety features, restricted floors), dumbwaiters (no internal elevator controls), multi-sided elevators, etc. By starting with an agnostic 'Elevator' class that has 'Buttons' and 'Floors', all of these features can easily be implemented by adding proerties and methods to the existing base class. Evidence of the scalability can be seen in the addition of both 'FloorButtons' and 'ElevatorButtons'. Through the initial design with buttons that only designate a floor, potential features that also could be considered 'common' came to mind: open/close door buttons and an emergency stop button. Adding these to the  existing design was as simple as keeping all 'FloorButtons' in a Button subclass with only a floor identifier property and adding a new Button subclass 'ElevatorButtons' that can conatin any properties necessary for these other buttons. TODO comments in the code clearly mark where these features can be easily added to existing methods. While self-imposed time-constraints prevented the full implementation of these features, the base design was easily scalable enough to incluide them.
 
+Unrelated to system design, some features that could have been implied have also be intentionally ommitted. For example, a full-fledged GUI to visualize the simulation. No requirement on this part was given, but it may be assumed to be part of a 'simulation'. For this reason, a basic visualization was provided, but full user input support/interaction as well as complex animations and visuals were ommitted as these features proved to be considerably time-consuming. Another ommitted feature was a multi-elevator system. Multiple elevators could be supported with the current design, but with considerably more rework than the presviously-mentioned features. For instance, the elevator's direction-optimization logic would have to be reworked completely into a multi-threaded elevator 'queue' system to scale to such a design. Technically, the requirements only specified 'an elevator', so this feature could be assumed to not be a requirement.
 
 ## Bugs
 - UI does not scale dynamically when window size is changed while the application is running.
