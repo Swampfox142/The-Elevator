@@ -21,12 +21,12 @@ public class RunElevator {
         frame.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
         frame.add(panel);
         frame.setVisible(true);
-        frame.setLocationRelativeTo(null); // Center the frame on the screen
+        frame.setLocationRelativeTo(null);
         // Create a timer to update the display based on the fps
         Timer timer = new Timer(1000 / FPS, (ActionEvent e) -> {
-            panel.repaint(); // Update the display with the elevator's new position
+            panel.repaint();
         });
-        timer.start(); // Start the timer
+        timer.start();
 
         // Thread for accepting user input
         Thread inputThread = new Thread(() -> {
@@ -58,16 +58,14 @@ public class RunElevator {
                                 direction = Direction.DOWN;
                             } else {
                                 System.out.println("Invalid direction. Use 'up' or 'down'.");
-                                continue; // Skip to the next loop iteration
+                                continue;
                             }
                         }
 
                         // Call the appropriate method based on the input
                         if (direction != null) {
-                            // Call a method on the Floor class
                             elevator.getFloor(floorNumber).getCallButton(direction).press();
                         } else {
-                            // Call a method on the Elevator class
                             elevator.getFloorButton(floorNumber).press();
                         }
 
@@ -81,38 +79,6 @@ public class RunElevator {
             }
         });
 
-        // // Thread for outputting the elevator data
-        // Thread outputThread = new Thread(() -> {
-        //     while (true) {
-        //         try {
-        //             Thread.sleep(1000); // Wait for 1 seconds
-        //             synchronized (lock) {
-        //                 // if (!inputList.isEmpty()) {
-        //                 //     System.out.println("Current inputs: " + inputList);
-        //                 // } else {
-        //                 //     System.out.println("No inputs yet.");
-        //                 // }
-        //                 // Print elvator data
-        //                 System.out.println("Current Floor: " + elevator.currentFloor);
-        //                 System.out.println("Elevator Direction: " + elevator.direction);
-        //                 // Use a StringBuilder to construct the output string
-        //                 StringBuilder pressedStates = new StringBuilder("[");
-        //                 for (int i = 0; i < elevator.floorButtons.length; i++) {
-        //                     pressedStates.append(elevator.floorButtons[i].pressed);
-        //                     if (i < elevator.floorButtons.length - 1) {
-        //                         pressedStates.append(", "); // Add a comma between elements
-        //                     }
-        //                 }
-        //                 pressedStates.append("]");
-        //                 System.out.println(pressedStates.toString()); // Output: [false, true, false, true]
-        //             }
-        //         } catch (InterruptedException e) {
-        //             Thread.currentThread().interrupt();
-        //             break;
-        //         }
-        //     }
-        // });
-        // Thread for outputting the elevator data to a Swing UI
         // Thread for performing elevator computations
         Thread elevatorThread = new Thread(() -> {
             while (true) {
@@ -127,7 +93,6 @@ public class RunElevator {
         });
 
         inputThread.start();
-        // outputThread.start();
         elevatorThread.start();
 
         // Wait for the input thread to finish
@@ -137,8 +102,7 @@ public class RunElevator {
             Thread.currentThread().interrupt();
         }
 
-        // Stop the output thread gracefully
-        // outputThread.interrupt();
+        // Stop the other threads gracefully
         elevatorThread.interrupt();
     }
 }
