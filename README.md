@@ -17,7 +17,8 @@
 - Allows for interaction via command-line.
 - Scalable & configurable with arbitrary number of floors/buttons (not currently supported through cli, and not thoroughly tested)
 
-![Image of a running instance of application. floorButton 4 and Floor 3's 'Down' call button are pressed. The elevator is in motion upwards towards floor 4.](images/elevator-animated.png)
+Below is a screenshot of a running instance of application. floorButton 4 and Floor 3's 'Down' call button are pressed. The elevator is in motion upwards towards floor 4.
+![Elevator Display](images/elevator-animated.png)
 
 ## Installation
 1. Clone the repository:
