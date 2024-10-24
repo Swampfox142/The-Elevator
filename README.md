@@ -1,17 +1,50 @@
-## Assumptions
+# Elevator Control System
 
-## Notes on Design Decisions
+## Table of Contents
+1. [Description](#description)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Features](#features)
+5. [Bugs](#bugs)
 
-Choice to use 'buttons' array to host all buttons inside an elevator, including floorButtons, emergency stop button, and open/close buttons.
-Pros: - agnostic. Any type of button can be added to the array, allowing flexibility for this design to be used accross different types of elevators.
-Cons: - unoptimal. Flexibility costs optimization in many cases. Some elevator logic needs to loop over a specifc group of buttons within this array. By keeping the array generic, the program must now loop over the entire array, including buttons that it need not loop over. Ideally, to optimize these code segments, there could possibly be an Elevator class design which uses more, specific button arrays, rather than a single generic one.
-Decision:
-Ultimately, due to lack of any requirements for this elevator design, I thought it best to keep things generic and flexible, so that many types of elevators are supported. With this direction, it is also easier to build out the current Elevator design to support elevators that are not currently supported.
 
-Choice to use array elevator.floorButtons and elevator.floors index as the 'unique ID' for that button/floor.
-Pros: - less properties in subclasses. Leaving each subclass without a specific ID field allows it to exist independently of the elevator, as it should be able to.
-Cons: - less verbose code. This design is not intuitive and causes floors to not be tied to a specific hierarchy within the building (e.g. Ground->1->2->...) without being tied to an elevator first.
-Decision:
-Ultimately, keeping subclasses agnostic and more reusable allows some of the design to stay in-tact if, for instance, the elevator needed a redesign.
+## Description
+**The Elevator** is a simulation of an elevator system written in Java. It provides the user with cli control of a configurable elevator system that will output the animated system with Swing.
 
-Elevator.floors and Elevator.floorButtons are ordered and both reference an elevator-accessible floor.s
+- Handles real-time updates of elevator positions.
+- Performs optimization calculations to simulate actual elevator behavior.
+- Allows for interaction via command-line.
+- Scalable & configurable with arbitrary number of floors/buttons (not currently supported through cli, and not thoroughly tested)
+
+## Installation
+1. Clone the repository:
+   git clone https://github.com/Swampfox142/The-Elevator.git
+2. Navigate to the project directory:
+   cd The-Elevator
+3. Compile the Java source code:
+   javac -d build RunElevator.java
+4. Run the application:
+   java -cp build RunElevator
+
+## Usage
+1. Enter commands to control the elevator, such as:
+   - '3': presses the '3' button while inside the elevator.
+   - '3 up': presses the 'up' button on floor 3, outside of the elevator.
+2. View the Swing output that will animate the button presses and the elevator moving from floor to floor.
+3. Enter 'exit' to stop the application.
+
+## Features - Implemented and Planned
+- [x] Real-time position tracking and elevator animation
+- [x] Real-time button highlights and updates
+- [x] Controllable buttons
+- [x] Scalable, agnostic design
+- [ ] Open/Close door buttons (planned)
+- [ ] Emergency Stop button (planned)
+- [ ] GUI-supported user input (unplanned)
+- [ ] Multiple Elevators (unplanned)
+
+
+
+## Bugs
+- UI does not scale dynamically when window size is changed while the application is running.
+- Bottom part of UI is cut off the bottom part of the window (full-screen pr dragging the window down fixes the visibility).
