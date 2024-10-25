@@ -172,7 +172,7 @@ public class Elevator {
             }
 
         }
-        this.direction = nextDirection;
+        this.direction = this.determineNewDirection();
     }
 
     /**
@@ -233,7 +233,7 @@ public class Elevator {
             }
 
         }
-        this.direction = nextDirection;
+        this.direction = this.determineNewDirection();
 
     }
 
